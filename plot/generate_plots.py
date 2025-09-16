@@ -43,7 +43,7 @@ def plot_noise(directory: Path):
         sorted_labels = [labels_inductive[i] for i in sorted_indices]
 
         ax_inductive.grid(True)
-        ax_inductive.legend(sorted_lines, sorted_labels, loc='southeast')
+        ax_inductive.legend(sorted_lines, sorted_labels, loc='lower right')
         ax_inductive.set_xlabel("Clock cycles")
         ax_inductive.set_ylabel("Probability")
         plt.tight_layout()
@@ -86,7 +86,7 @@ def plot_noise(directory: Path):
         sorted_labels = [labels_resistive[i] for i in sorted_indices]
 
         ax_resistive.grid(True)
-        ax_resistive.legend(sorted_lines, sorted_labels, loc='southeast')
+        ax_resistive.legend(sorted_lines, sorted_labels, loc='lower right')
         ax_resistive.set_xlabel("Clock cycles")
         ax_resistive.set_ylabel("Probability")
         plt.tight_layout()
