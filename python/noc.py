@@ -4,6 +4,14 @@ from typing import Callable
 from pathlib import Path
 
 class PropertyType(enum.Enum):
+    """The type of property to generate.
+
+    RESISTIVE: Generates properties for resistive noise.
+    INDUCTIVE: Generates properties for inductive noise.
+    BOTH_RI: Generates properties for both resistive and inductive noise.
+    FUNCTION: Generates properties for functional correctness.
+    NO_PROPS: Generates no properties.
+    """
     RESISTIVE = 1
     INDUCTIVE = 2
     BOTH_RI = 3
@@ -41,6 +49,17 @@ class Noc:
                  injection_rate_denominator: int = 10,
                  resistive_noise_threshold: int = 1,
                  inductive_noise_threshold: int = 1):
+        """Initializes the NoC object.
+
+        Args:
+            size (int): The size of the NoC (size x size).
+            buffer_size (int, optional): The size of the buffers in the NoC. Defaults to 4.
+            activity_thresh (int, optional): The activity threshold for noise calculation. Defaults to 3.
+            injection_rate_numerator (int, optional): The numerator of the injection rate. Defaults to 3.
+            injection_rate_denominator (int, optional): The denominator of the injection rate. Defaults to 10.
+            resistive_noise_threshold (int, optional): The threshold for resistive noise. Defaults to 1.
+            inductive_noise_threshold (int, optional): The threshold for inductive noise. Defaults to 1.
+        """
         assert size >= 2, "Size must be at least 2x2"
 
         self.num_nodes: int = size * size
@@ -53,6 +72,18 @@ class Noc:
         self.inductive_noise_threshold: int = inductive_noise_threshold
     
     def print(self, ptype: PropertyType, *, clk_low: int = 0, clk_high: int = 100, stride: int = 1, generate_flits: str | None = None):
+        """Generates the Modest model for the NoC.
+
+        Args:
+            ptype (PropertyType): The type of property to generate.
+            clk_low (int, optional): The lower bound of the clock cycle. Defaults to 0.
+            clk_high (int, optional): The upper bound of the clock cycle. Defaults to 100.
+            stride (int, optional): The stride for the clock cycle. Defaults to 1.
+            generate_flits (str | None, optional): A custom flit generation process. Defaults to None.
+
+        Returns:
+            str: The Modest model for the NoC.
+        """
         return self.type() \
                 + self.user_defined_constants() \
                 + self.calculated_constants()\
