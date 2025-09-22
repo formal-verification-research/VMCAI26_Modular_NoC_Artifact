@@ -1,4 +1,4 @@
-from generate_results import simulate
+from psn_results import simulate
 from noc import PropertyType
 from pathlib import Path
 
