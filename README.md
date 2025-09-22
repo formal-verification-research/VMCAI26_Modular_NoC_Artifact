@@ -50,15 +50,15 @@ docker load -i modular_noc.tar
 Then start the docker image using the following command.
 
 ```sh
-docker run -it modular_noc:latest
+docker run -it modular_noc:vmcai26
 ```
 
 You should now be in the docker environment. You can check that Modest and Python are
 correctly installed by running the following commands.
 
 ```sh
-modest --version  # v3.1.297
-python3 --version # 3.11.2
+modest --version  # v3.1.290
+python3 --version # 3.13.5
 ```
 
 ## Installing Modest on a Local Machine

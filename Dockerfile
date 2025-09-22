@@ -11,7 +11,18 @@ RUN apt-get update && \
     python3 \
     unzip \
     python3-matplotlib \
-    python3-pandas
+    python3-pandas \
+    wget \
+    ca-certificates
+
+RUN update-ca-certificates
+
+# Set up dotnet runtime
+RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y dotnet-runtime-9.0
 
 # Copy modest to the container
 COPY modest.zip /tmp/modest.zip 
