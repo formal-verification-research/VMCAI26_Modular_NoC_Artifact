@@ -1,40 +1,167 @@
-# Probabilistic Verification for Modular Network-on-Chip Systems Artifact
+# Artifact for Probabilistic Verification for Modular Network-on-Chip Systems
 
-This repository contains the artifact for the paper "Probabilistic Verification for Modular Network-on-Chip Systems".
+Authors: Nick Waddoups, Jonah Boe, Arnd Hartmanns, Prabal Basu, Sanghamitra Roy,
+Koushik Chakraborty, Zhen Zhang
 
-This artifact provides the models and tools used to generate the results in the paper. The models are written in the Modest language and the tools are written in Python.
+This is the artifact for "Probabilistic Verification for Modular Network-on-Chip
+Systems". Access the artifact by downloading the Docker image from the releases
+section of this GitHub repository, and then follow the instructions below for loading
+the docker image on your machine. Steps for replicating the work presented in the paper
+are located at the bottom of this document.
 
-## Directory Structure
+## Prerequisites for Running the Modular NoC model
 
-- `models/`: Contains the Modest models for the Network-on-Chip (NoC) of various sizes.
-- `tools/`: Contains the Python scripts for generating the results and models.
-- `results/`: Contains the raw CSV data and timing information from the experiments.
-- `plot/`: Contains the plots generated from the results, and the script to generate them.
+The following software must be installed to run the modular NoC model or generate
+new model templates using the Python library.
 
-## Reproducing the Results
+- [Modest Toolset](https://www.modestchecker.net/) Version 3.1.290 or greater.
+- Python 3.10 or greater.
+- 16 GB RAM or greater.
 
-To reproduce the results, you will need to have the Modest toolset installed and on your system's PATH. You can find installation instructions here: [modestchecker.net](https://www.modestchecker.net/).
+Optionally, you can use the provided Docker image which, once set up, will have the
+Modest Toolset and Python installed. For verification of larger NoCs, using a local
+installation of Modest is recommended as model checking is a CPU and RAM intensive
+process.
 
-Once Modest is installed, you can run the experiments using the `generate_results.py` script in the `tools/` directory:
+## Setting up the Docker Container
 
-```bash
-python3 tools/generate_results.py
+This artifact has a Docker image that contains the build of the Modest Toolset used in
+the paper.
+
+### Installing Docker Desktop
+
+Next, you need to ensure Docker is installed. Follow the instructions located at
+[docs.docker.com](https://docs.docker.com/desktop/) to install the desktop version of
+Docker for you specific operating system. Once enstalled, make sure to start Docker
+Desktop in order for the following commands to work correctly.
+
+### Obtaining the Docker Image
+
+Go to the releases tab of artifact's GitHub repository (will update to Zenodo in future)
+and download the latest release.
+
+Move your shell into this directory containing the downloaded release and then
+run the following command to load the Docker image.
+
+```sh
+# load the docker image, will take several minutes
+docker load -i modular_noc.tar
 ```
 
-This will run all the simulations and generate the results in the `results/` directory.
+Then start the docker image using the following command.
 
-To generate the plots, you will need to have Python with the `matplotlib` and `numpy` libraries installed. The original paper used MATLAB, but this has been converted to Python for portability. You can run the script `generate_plots.py` in the `plot/` directory:
-
-```bash
-python3 plot/generate_plots.py
+```sh
+docker run -it modular_noc:latest
 ```
 
-This will generate the plots in the `plot/` directory.
+You should now be in the docker environment. You can check that Modest and Python are
+correctly installed by running the following commands.
 
-## Customizing the Experiments
+```sh
+modest --version  # v3.1.290
+python3 --version # 3.11.2
+```
 
-The `tools/noc.py` file contains the `Noc` class, which is used to generate the Modest models. You can the class in this file to generate NoC models with unique topological size, buffer size, injection rate, and other parameters.
+## Installing Modest on a Local Machine
 
-The `tools/generate_results.py` file contains the main script for running the experiments. You can modify this file to change the simulation parameters, such as the clock upper bound, threshold, and stride.
+Go to [modestchecker.net](https://www.modestchecker.net/Downloads/) and read and
+agree to the license terms. Then, download the zipped executable for your specific
+operating system. Options are available for Linux, Mac, and Windows.
 
-The `tools/new_flit_injection_example.py` file shows how to create a custom flit injection pattern and run a simulation with it.
+Unzip the Modest executable and add it to your path. You can test that you have
+correctly added the tool to the path by going to a shell of your choice and
+running the following command.
+
+```sh
+modest --version
+```
+
+The output should match the following:
+
+```text
+The Modest Toolset (www.modestchecker.net), version <v3.1.290 or greater>.
+Command: modest --version
+Usage:    modest <tool> <parameters>
+Tools: benchmark         (mobench)
+       check             (mcsta)
+       check-symblicit   (mcsta-symblicit)
+       convert           (moconv)
+       export-to-dot     (mosta)
+       export-to-python  (mopy)
+       initialize        (init)
+       plan              (modysh)
+       plot              (moplot)
+       prohver           (prohver)
+       simulate          (modes)
+```
+
+## Files in this Artifact
+
+This artifact contains the modular 2x2 model used to verify functional correctness of the
+modular NoC design and the results from the verification in the [models/](./models/)
+directory.
+
+Additionally, two python scripts are provided for generating arbitrarily-sized NoC models
+and for running the `modest` tool from Python in the [python/](./python/) directory.
+
+## Replicating Results From the Paper
+
+Results can either be replicated using the provided Docker image or with a local
+installation of Modest and Python.
+
+### 2x2 Correctness
+
+To verify 2x2 correctness run the following command from this directory to produce the
+correctness guarantees from Modest. This should take approximately 10 minutes and use
+10 GB of memory.
+
+```sh
+modest check models/functional_2x2.modest --unsafe --chainopt
+```
+
+### PSN Characterization
+
+To generate the PSN characterization results for basic 2x2, 3x3, and 4x4 setups (Figures 2-5
+of the paper) run the following from this directory. This should take approximately 1.75 hrs,
+and should use only a small amount of memory as it is simulating the model, not exploring the
+statespace.
+
+```sh
+python3 python/fmcad.py
+```
+
+### Interpreting the Results
+
+The output of running modest on the 2x2 correctness model demonstrate that all properties hold
+for the model. Each property listed in the output represents a CTL property in the model, and
+is either marked `True` if the property held or `False` if it did not hold. You can see the CTL
+properties in Section V. of our paper or on lines 227-361 of
+[functional_2x2.modest](models/functional_2x2.modest).
+
+The output of the PSN characterization is stored in the result/ directory. This directory has
+subdirectories for 2x2, 3x3, and 4x4. Inside of each of these directories is a list of .csv
+and .txt files containing the results of each simulation run. The files are of the following
+naming convention:
+
+```text
+noc_<size>_<type>_<threshold>_<clk cycle stride>_<cycles per analysis>
+```
+
+For example, simulation results (e.g. CDF of PSN probability vs. clk cycles) for inductive noise
+with a `INDUCTIVE_THRESHOLD` of 1, a clock cycle stride of 6, and 300 cycles per analysis would
+be named as follows:
+
+```text
+noc_2x2_inductive_noise_threshold_1_stride_6_block_size_300
+```
+
+The files ending in .csv are the raw data from `modest simulate` formatted in a csv file, and the
+files ending in .time.txt contain the simulation specification and time that it took to complete
+the simulation.
+
+To replicate the plots from the submission we provide a plotting script using Matplotlib in Python.
+If you are using the docker image, simply run `python3 python/plot.py` to generate the plots.
+Otherwise, first ensure that you have Matplotlib and Pandas installed before running the script.
+
+Plots can be viewed in Docker desktop by going to "Containers" (in the leftside menu bar), then clicking
+on "modular_noc", then selecting "files", then navigating to the /home/plots/ directory.
