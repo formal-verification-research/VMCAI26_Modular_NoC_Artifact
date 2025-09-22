@@ -236,22 +236,6 @@ def noc_2x2_inductive():
     simulate(size=2, result_path=Path("results/2x2"), type=PropertyType.INDUCTIVE, threshold=5, clk_upper=None, stride=12)
     simulate(size=2, result_path=Path("results/2x2"), type=PropertyType.INDUCTIVE, threshold=10, clk_upper=None, stride=36)
 
-
-@time_func
-def noc_2x2_resistive_check():
-    """Runs a set of 2x2 resistive simulations with modest check."""
-    check(size=2, result_path=Path("results/2x2_check"), type=PropertyType.RESISTIVE, threshold=1, clk_upper=175, stride=1)
-    check(size=2, result_path=Path("results/2x2_check"), type=PropertyType.RESISTIVE, threshold=5, clk_upper=250, stride=1)
-    check(size=2, result_path=Path("results/2x2_check"), type=PropertyType.RESISTIVE, threshold=10, clk_upper=400, stride=4)
-    check(size=2, result_path=Path("results/2x2_check"), type=PropertyType.RESISTIVE, threshold=20, clk_upper=675, stride=7)
-
-@time_func
-def noc_2x2_inductive_check():
-    """Runs a set of 2x2 inductive simulations with modest check."""
-    check(size=2, result_path=Path("results/2x2_check"), type=PropertyType.INDUCTIVE, threshold=1, clk_upper=1500, stride=6)
-    check(size=2, result_path=Path("results/2x2_check"), type=PropertyType.INDUCTIVE, threshold=5, clk_upper=2500, stride=12)
-    check(size=2, result_path=Path("results/2x2_check"), type=PropertyType.INDUCTIVE, threshold=10, clk_upper=5250, stride=36)
-
 @time_func
 def noc_3x3_resistive():
     """Runs a set of 3x3 resistive simulations."""
@@ -315,7 +299,3 @@ if __name__ == "__main__":
     # noc_3x3_inductive()
     # noc_4x4_inductive()
     # noc_8x8_inductive()
-
-    # Check
-    # noc_2x2_inductive_check()
-    # noc_2x2_resistive_check()
