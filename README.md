@@ -58,7 +58,7 @@ You should now be in the docker environment. You can check that Modest and Pytho
 correctly installed by running the following commands.
 
 ```sh
-modest --version  # v3.1.290
+modest --version  # v3.1.297
 python3 --version # 3.11.2
 ```
 
@@ -127,7 +127,7 @@ and should use only a small amount of memory as it is simulating the model, not 
 statespace.
 
 ```sh
-python3 python/fmcad.py
+python3 python/generate_psn.py
 ```
 
 ### Interpreting the Results
