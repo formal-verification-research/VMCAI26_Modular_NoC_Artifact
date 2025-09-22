@@ -9,7 +9,7 @@ section of this GitHub repository, and then follow the instructions below for lo
 the docker image on your machine. Steps for replicating the work presented in the paper
 are located at the bottom of this document.
 
-## Prerequisites for Running the Modular NoC model
+## Prerequisites for Using the Modular NoC model
 
 The following software must be installed to run the modular NoC model or generate
 new model templates using the Python library.
@@ -103,30 +103,30 @@ directory.
 Additionally, two python scripts are provided for generating arbitrarily-sized NoC models
 and for running the `modest` tool from Python in the [python/](./python/) directory.
 
-## Replicating Results From the Paper
+## Replicating Modular Results From the Paper
 
 Results can either be replicated using the provided Docker image or with a local
 installation of Modest and Python.
 
-### 2x2 Correctness
+### Modular 2x2 Correctness
 
 To verify 2x2 correctness run the following command from this directory to produce the
 correctness guarantees from Modest. This should take approximately 10 minutes and use
 10 GB of memory.
 
 ```sh
-modest check models/functional_2x2.modest --unsafe --chainopt
+modest check models/2x2_ctl_example.modest --unsafe --chainopt
 ```
 
-### PSN Characterization
+### Modular PSN Characterization
 
-To generate the PSN characterization results for basic 2x2, 3x3, and 4x4 setups (Figures 2-5
-of the paper) run the following from this directory. This should take approximately 1.75 hrs,
+To generate the PSN characterization results for basic 2x2, 3x3, 4x4, and 8x8 setups (Figures 3,
+5, 7-9 in paper) run the following from this directory. This should take approximately 2 hrs,
 and should use only a small amount of memory as it is simulating the model, not exploring the
 statespace.
 
 ```sh
-python3 python/generate_psn.py
+python3 python/psn_results.py
 ```
 
 ### Interpreting the Results
@@ -138,7 +138,7 @@ properties in Section V. of our paper or on lines 227-361 of
 [functional_2x2.modest](models/functional_2x2.modest).
 
 The output of the PSN characterization is stored in the result/ directory. This directory has
-subdirectories for 2x2, 3x3, and 4x4. Inside of each of these directories is a list of .csv
+subdirectories for 2x2, 3x3, 4x4, and 8x8. Inside of each of these directories is a list of .csv
 and .txt files containing the results of each simulation run. The files are of the following
 naming convention:
 
@@ -164,3 +164,11 @@ Otherwise, first ensure that you have Matplotlib and Pandas installed before run
 
 Plots can be viewed in Docker desktop by going to "Containers" (in the leftside menu bar), then clicking
 on "modular_noc", then selecting "files", then navigating to the /home/plots/ directory.
+
+## Using Python Scripts to Generate New Models
+
+This artifact also provides two python scripts that are useful for automating result generation of
+other NoC work: [noc.py](./python/noc.py) and [modest.py](./python/modest.py). These two scripts
+provide functions for generating new NoC models and running Modest models from python. The
+[psn_results](./python/psn_results.py) results script makes heavy use of both these libraries.
+See [NoC and Modest Library README](./python/README.md) for more information.
