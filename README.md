@@ -4,7 +4,7 @@ Authors: Nick Waddoups, Jonah Boe, Arnd Hartmanns, Prabal Basu, Sanghamitra Roy,
 Koushik Chakraborty, Zhen Zhang
 
 This is the artifact for "Probabilistic Verification for Modular Network-on-Chip
-Systems". Access the artifact by downloading the Docker image from the releases
+Systems". Access the artifact by downloading the zipped artifact from the releases
 section of this GitHub repository, and then follow the instructions below for loading
 the docker image on your machine. Steps for replicating the work presented in the paper
 are located at the bottom of this document.
@@ -37,14 +37,13 @@ Desktop in order for the following commands to work correctly.
 
 ### Obtaining the Docker Image
 
-Go to the releases tab of artifact's GitHub repository (will update to Zenodo in future)
-and download the latest release.
+Go to the releases tab of artifact's GitHub repository and download the latest release.
 
 Move your shell into this directory containing the downloaded release and then
 run the following command to load the Docker image.
 
 ```sh
-# load the docker image, will take several minutes
+# load the docker image -- this will take several minutes
 docker load -i modular_noc.tar
 ```
 
