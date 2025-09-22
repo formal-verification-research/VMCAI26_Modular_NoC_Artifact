@@ -5,9 +5,11 @@ Koushik Chakraborty, Zhen Zhang
 
 This is the artifact for "Probabilistic Verification for Modular Network-on-Chip
 Systems". Access the artifact by either downloading the artifact from the Releases
-section of our Git repository, or from Zenodo, and then follow the instructions below
-for loading the docker image on your machine. Steps for replicating the work presented
-in the paper are located at the bottom of this document.
+section of our
+[Github repository](github.com/formal-verification-research/VMCAI26_Modular_NoC_Artifact),
+or from Zenodo (DOI 10.5281/zenodo.17179899), and then follow the instructions below
+for loading the docker image on your machine. Steps for replicating the work presented in
+the paper are located at the bottom of this document.
 
 ## Prerequisites for Using the Modular NoC model
 
