@@ -9,6 +9,9 @@ section of this GitHub repository, and then follow the instructions below for lo
 the docker image on your machine. Steps for replicating the work presented in the paper
 are located at the bottom of this document.
 
+This artifact aims to meet the requirements for the _Available_, _Functional_, and
+_Resuseable_ badges.
+
 ## Prerequisites for Using the Modular NoC model
 
 The following software must be installed to run the modular NoC model or generate
@@ -18,10 +21,10 @@ new model templates using the Python library.
 - Python 3.10 or greater.
 - 16 GB RAM or greater.
 
-Optionally, you can use the provided Docker image which, once set up, will have the
-Modest Toolset and Python installed. For verification of larger NoCs, using a local
-installation of Modest is recommended as model checking is a CPU and RAM intensive
-process.
+A Docker image is provided with this artifact containing the Modest Toolset and
+Python. Using this Docker image is the recommended way to review this artifact.
+If required, steps are provided below to install Modest and Python on a local
+machine as well.
 
 ## Setting up the Docker Container
 
@@ -50,15 +53,15 @@ docker load -i modular_noc.tar
 Then start the docker image using the following command.
 
 ```sh
-docker run -it modular_noc:latest
+docker run -it modular_noc:vmcai26
 ```
 
 You should now be in the docker environment. You can check that Modest and Python are
 correctly installed by running the following commands.
 
 ```sh
-modest --version  # v3.1.297
-python3 --version # 3.11.2
+modest --version  # v3.1.290
+python3 --version # 3.13.5
 ```
 
 ## Installing Modest on a Local Machine
