@@ -125,9 +125,10 @@ modest check models/2x2_ctl_example.modest --unsafe --chainopt
 ### Modular PSN Characterization
 
 To generate the PSN characterization results for basic 2x2, 3x3, 4x4, and 8x8 setups (Figures 3,
-5, 7-9 in paper) run the following from this directory. This should take approximately 2 hrs,
-and should use only a small amount of memory as it is simulating the model, not exploring the
-state space.
+5, 7-9 in paper) run the following from this directory. This should take approximately 2 hrs.
+This characterization is completed using statistical model checking, as described in the paper.
+Statistical model checking does not use excessive memory, but will use multiple threads in an
+attempt to generate results faster.
 
 ```sh
 python3 python/psn_results.py
