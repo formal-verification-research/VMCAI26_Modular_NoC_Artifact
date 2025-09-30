@@ -51,7 +51,7 @@ process GenerateFlits(int id) {
     simulate(
         size=2,
         result_path=Path("results/2x2_custom_flit_gen"),
-        type=PropertyType.RESISTIVE,
+        ptype=PropertyType.RESISTIVE,
         threshold=1,
         clk_upper=50,
         stride=2,
@@ -61,7 +61,7 @@ process GenerateFlits(int id) {
     simulate(
         size=2,
         result_path=Path("results/2x2_custom_flit_gen"),
-        type=PropertyType.RESISTIVE,
+        ptype=PropertyType.RESISTIVE,
         threshold=2,
         clk_upper=50,
         stride=2,
@@ -71,7 +71,7 @@ process GenerateFlits(int id) {
     simulate(
         size=2,
         result_path=Path("results/2x2_custom_flit_gen"),
-        type=PropertyType.RESISTIVE,
+        ptype=PropertyType.RESISTIVE,
         threshold=5,
         clk_upper=50,
         stride=2,
