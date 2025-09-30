@@ -30,7 +30,7 @@ with open("2x2.modest", "w") as f:
     f.write(model)
 ```
 
-More documentation is availabe in [noc.py](./noc.py).
+More documentation is available in [noc.py](./noc.py).
 
 ## `modest` Library
 
