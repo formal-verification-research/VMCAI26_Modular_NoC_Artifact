@@ -10,7 +10,7 @@ the docker image on your machine. Steps for replicating the work presented in th
 are located at the bottom of this document.
 
 This artifact aims to meet the requirements for the _Available_, _Functional_, and
-_Resuseable_ badges.
+_Reuseable_ badges.
 
 ## Prerequisites for Using the Modular NoC model
 
@@ -35,14 +35,15 @@ the paper.
 
 Next, you need to ensure Docker is installed. Follow the instructions located at
 [docs.docker.com](https://docs.docker.com/desktop/) to install the desktop version of
-Docker for you specific operating system. Once enstalled, make sure to start Docker
+Docker for your specific operating system. Once installed, make sure to start Docker
 Desktop in order for the following commands to work correctly.
 
 ### Obtaining the Docker Image
 
-Go to the releases tab of artifact's GitHub repository and download the latest release.
+Go to the releases tab of artifact's GitHub repository or to Zenodo and download the
+latest release.
 
-Move your shell into this directory containing the downloaded release and then
+Navigate your shell into the directory containing the downloaded release and then
 run the following command to load the Docker image.
 
 ```sh
@@ -126,7 +127,7 @@ modest check models/2x2_ctl_example.modest --unsafe --chainopt
 To generate the PSN characterization results for basic 2x2, 3x3, 4x4, and 8x8 setups (Figures 3,
 5, 7-9 in paper) run the following from this directory. This should take approximately 2 hrs,
 and should use only a small amount of memory as it is simulating the model, not exploring the
-statespace.
+state space.
 
 ```sh
 python3 python/psn_results.py
@@ -134,11 +135,11 @@ python3 python/psn_results.py
 
 ### Interpreting the Results
 
-The output of running modest on the 2x2 correctness model demonstrate that all properties hold
+The output of running modest on the 2x2 correctness model demonstrates that all properties hold
 for the model. Each property listed in the output represents a CTL property in the model, and
 is either marked `True` if the property held or `False` if it did not hold. You can see the CTL
 properties in Section V. of our paper or on lines 227-361 of
-[functional_2x2.modest](models/functional_2x2.modest).
+[2x2_ctl_example.modest](models/2x2_ctl_example.modest).
 
 The output of the PSN characterization is stored in the result/ directory. This directory has
 subdirectories for 2x2, 3x3, 4x4, and 8x8. Inside of each of these directories is a list of .csv
@@ -162,11 +163,11 @@ files ending in .time.txt contain the simulation specification and time that it 
 the simulation.
 
 To replicate the plots from the submission we provide a plotting script using Matplotlib in Python.
-If you are using the docker image, simply run `python3 python/plot.py` to generate the plots.
+If you are using the docker image, simply run `python3 plot/generate_plots.py` to generate the plots.
 Otherwise, first ensure that you have Matplotlib and Pandas installed before running the script.
 
-Plots can be viewed in Docker desktop by going to "Containers" (in the leftside menu bar), then clicking
-on "modular_noc", then selecting "files", then navigating to the /home/plots/ directory.
+Plots can be viewed in Docker desktop by going to "Containers" (in the left side menu bar), then
+clicking on "modular_noc", then selecting "files", then navigating to the /home/plots/ directory.
 
 ## Using Python Scripts to Generate New Models
 
