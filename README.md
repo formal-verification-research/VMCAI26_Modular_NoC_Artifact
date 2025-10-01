@@ -4,10 +4,12 @@ Authors: Nick Waddoups, Jonah Boe, Arnd Hartmanns, Prabal Basu, Sanghamitra Roy,
 Koushik Chakraborty, Zhen Zhang
 
 This is the artifact for "Probabilistic Verification for Modular Network-on-Chip
-Systems". Access the artifact by downloading the zipped artifact from the releases
-section of this GitHub repository, and then follow the instructions below for loading
-the docker image on your machine. Steps for replicating the work presented in the paper
-are located at the bottom of this document.
+Systems". Access the artifact by either downloading the artifact from the Releases
+section of our
+[Github repository](github.com/formal-verification-research/VMCAI26_Modular_NoC_Artifact),
+or from Zenodo (DOI 10.5281/zenodo.17179899), and then follow the instructions below
+for loading the docker image on your machine. Steps for replicating the work presented in
+the paper are located at the bottom of this document.
 
 This artifact aims to meet the requirements for the _Available_, _Functional_, and
 _Reuseable_ badges.
