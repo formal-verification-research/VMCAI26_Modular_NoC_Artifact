@@ -144,9 +144,9 @@ properties in Section V. of our paper or on lines 227-361 of
 [2x2_ctl_example.modest](models/2x2_ctl_example.modest).
 
 The output of the PSN characterization is stored in the result/ directory. This directory has
-subdirectories for 2x2, 3x3, 4x4, and 8x8. Inside of each of these directories is a list of .csv
-and .txt files containing the results of each simulation run. The files are of the following
-naming convention:
+subdirectories for 2x2, 2x2_custom_flit_gen, 3x3, 4x4, and 8x8. Inside of each of these
+directories is a list of ".csv" and ".txt" files containing the results of each simulation run.
+The files are of the following naming convention:
 
 ```text
 noc_<size>_<type>_<threshold>_<clk cycle stride>_<cycles per analysis>
