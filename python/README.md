@@ -73,4 +73,4 @@ and the script ensures that the model starts off valid.
 
 [psn_results.py](./psn_results.py) shows an example of how we used these libraries to automate
 the characterization of PSN for the results in this paper. Similar methods can be used to
-automate many SMC runs in the future.
+automate NoC characterization over many parameters.
