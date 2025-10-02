@@ -1,3 +1,6 @@
+"""This script generates the PSN plots shown in the paper. It's not intended
+to be a expansive library for plot generation, but rather a simple script for
+generating paper-ready plots."""
 
 import os
 import re
@@ -51,6 +54,8 @@ def plot_noise(directory: Path):
         png_filename = Path("plot") / f"{noc_size}_inductive.png"
         fig_inductive.savefig(png_filename, dpi=600)
 
+        # (30/44) worked out to be a nice scale. There isn't another reason for
+        # choosing such a specific value
         fig_inductive.set_size_inches(3.3 * (30/44), 2.7 * (30/44))
         ax_inductive.set_xlabel("Clock cycles", fontsize=8)
         ax_inductive.set_ylabel("Probability", fontsize=8)
@@ -94,6 +99,8 @@ def plot_noise(directory: Path):
         png_filename = Path("plot") / f"{noc_size}_resistive.png"
         fig_resistive.savefig(png_filename, dpi=600)
 
+        # (30/44) worked out to be a nice scale. There isn't another reason for
+        # choosing such a specific value
         fig_resistive.set_size_inches(3.3 * (30/44), 2.7 * (30/44))
         ax_resistive.set_xlabel("Clock cycles", fontsize=8)
         ax_resistive.set_ylabel("Probability", fontsize=8)
