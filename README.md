@@ -24,7 +24,7 @@ new model templates using the Python library.
 - 16 GB RAM or greater.
 
 A Docker image is provided with this artifact containing the Modest Toolset and
-Python. Using this Docker image is the recommended way to review this artifact.
+Python. Using this Docker image is the recommended way to use this artifact.
 If required, steps are provided below to install Modest and Python on a local
 machine as well.
 
