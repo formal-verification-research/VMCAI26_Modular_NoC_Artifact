@@ -4,15 +4,25 @@ Authors: Nick Waddoups, Jonah Boe, Arnd Hartmanns, Prabal Basu, Sanghamitra Roy,
 Koushik Chakraborty, Zhen Zhang
 
 This is the artifact for "Probabilistic Verification for Modular Network-on-Chip
-Systems". Access the artifact by either downloading the artifact from the Releases
-section of our
+Systems". Access the artifact by downloading the artifact from the Releases section
+of our
 [Github repository](github.com/formal-verification-research/VMCAI26_Modular_NoC_Artifact),
 or from Zenodo (DOI 10.5281/zenodo.17179899), and then follow the instructions below
 for loading the docker image on your machine. Steps for replicating the work presented in
 the paper are located at the bottom of this document.
 
-This artifact aims to meet the requirements for the _Available_, _Functional_, and
-_Reuseable_ badges.
+---
+
+## Table of Contents
+
+1. Prerequisites for Using the Modular NoC model
+2. Setting up the Docker Container
+3. Installing Modest on a Local Machine (Optional)
+4. Files in this Artifact
+5. Replicating Modular Results From the Paper
+6. Using Python to Generate New Models
+
+---
 
 ## Prerequisites for Using the Modular NoC model
 
@@ -25,7 +35,7 @@ new model templates using the Python library.
 
 A Docker image is provided with this artifact containing the Modest Toolset and
 Python. Using this Docker image is the recommended way to use this artifact.
-If required, steps are provided below to install Modest and Python on a local
+If necessary, steps are provided below to install Modest and Python on a local
 machine as well.
 
 ## Setting up the Docker Container
@@ -42,7 +52,7 @@ Desktop in order for the following commands to work correctly.
 
 ### Obtaining the Docker Image
 
-Go to the releases tab of artifact's GitHub repository or to Zenodo and download the
+Go to the releases tab of the artifact's GitHub repository or to Zenodo and download the
 latest release.
 
 Navigate your shell into the directory containing the downloaded release and then
@@ -67,7 +77,7 @@ modest --version  # v3.1.290
 python3 --version # 3.13.5
 ```
 
-## Installing Modest on a Local Machine
+## Installing Modest on a Local Machine (Optional)
 
 Go to [modestchecker.net](https://www.modestchecker.net/Downloads/) and read and
 agree to the license terms. Then, download the zipped executable for your specific
@@ -85,34 +95,24 @@ The output should match the following:
 
 ```text
 The Modest Toolset (www.modestchecker.net), version <v3.1.290 or greater>.
-Command: modest --version
-Usage:    modest <tool> <parameters>
-Tools: benchmark         (mobench)
-       check             (mcsta)
-       check-symblicit   (mcsta-symblicit)
-       convert           (moconv)
-       export-to-dot     (mosta)
-       export-to-python  (mopy)
-       initialize        (init)
-       plan              (modysh)
-       plot              (moplot)
-       prohver           (prohver)
-       simulate          (modes)
+...
 ```
 
 ## Files in this Artifact
 
-This artifact contains the modular 2x2 model used to verify functional correctness of the
-modular NoC design and the results from the verification in the [models/](./models/)
-directory.
+- [models/](./models/): The modular 2x2 model used to verify functional correctness of the
+  modular NoC design examples of 2x2 and 3x3 used to characterize PSN. Additionally, the
+  model from previous works is in this directory as well.
 
-Additionally, two python scripts are provided for generating arbitrarily-sized NoC models
-and for running the `modest` tool from Python in the [python/](./python/) directory.
+- [python/](./python/): Python scripts and libraries are provided for generating
+  arbitrarily-sized NoC models and for calling the `modest` tool from Python.
+
+- [plot/](./plot/): Plots generated from PSN characterization and a Python script to
+  generate additional plots are available in this directory.
 
 ## Replicating Modular Results From the Paper
 
-Results can either be replicated using the provided Docker image or with a local
-installation of Modest and Python.
+Results can be replicated using the provided Docker image.
 
 ### Modular 2x2 Correctness
 
@@ -161,21 +161,35 @@ be named as follows:
 noc_2x2_inductive_noise_threshold_1_stride_6_block_size_300
 ```
 
-The files ending in .csv are the raw data from `modest simulate` formatted in a csv file, and the
-files ending in .time.txt contain the simulation specification and time that it took to complete
+The files ending in ".csv" are the raw data from `modest simulate` formatted in a csv file, and the
+files ending in ".time.txt" contain the simulation specification and time that it took to complete
 the simulation.
 
+### Plotting the results
+
 To replicate the plots from the submission we provide a plotting script using Matplotlib in Python.
-If you are using the docker image, simply run `python3 plot/generate_plots.py` to generate the plots.
-Otherwise, first ensure that you have Matplotlib and Pandas installed before running the script.
+In the shell of the Docker image, run
+
+```sh
+python3 plot/generate_plots.py
+```
+
+This script must be run from the directory of this README (the root directory of the repository)
+and works by looking at the files in [results/](./results/) and generating plots for each set of
+results.
 
 Plots can be viewed in Docker desktop by going to "Containers" (in the left side menu bar), then
 clicking on "modular_noc", then selecting "files", then navigating to the /home/plots/ directory.
 
-## Using Python Scripts to Generate New Models
+## Using Python to Generate New Models
 
 This artifact also provides two python scripts that are useful for automating result generation of
 other NoC work: [noc.py](./python/noc.py) and [modest.py](./python/modest.py). These two scripts
 provide functions for generating new NoC models and running Modest models from python. The
 [psn_results](./python/psn_results.py) results script makes heavy use of both these libraries.
 See [NoC and Modest Library README](./python/README.md) for more information.
+
+---
+
+This artifact aims to meet the requirements for the _Available_, _Functional_, and
+_Reuseable_ badges.

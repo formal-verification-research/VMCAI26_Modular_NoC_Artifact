@@ -1,6 +1,6 @@
 # NoC and Modest Libraries README
 
-This README covers briefly how to use the `noc` and `modest` libraries provided
+This README provides an overview of using the `noc` and `modest` libraries provided
 in this artifact.
 
 ## `noc` Library
@@ -19,7 +19,7 @@ _2x2 = noc.Noc(2)
 ```
 
 To print the Modest model, call the "print" function on the `Noc` object. When doing so, you must
-specify what kind of properties you would like to include with the model.
+specify which properties you would like to include with the model.
 
 ```python
 # get a model with no properties
