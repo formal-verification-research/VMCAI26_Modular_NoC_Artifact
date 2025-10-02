@@ -26,13 +26,14 @@ RUN unzip /tmp/modest.zip -d /opt/modest && rm /tmp/modest.zip
 ENV PATH="/opt/modest:$PATH"
 
 # Create the base directory for working from
-RUN mkdir -p /home && mkdir -p /home/python && mkdir -p /home/models
+RUN mkdir -p /home && mkdir -p /home/python && mkdir -p /home/models && mkdir -p /home/plot
 
 # Copy the code into the image
 COPY README.md /home/README.md
 COPY LICENSE /home/LICENSE
 COPY python/ /home/python
 COPY models/ /home/models
+COPY plots/generate_plots.py /home/plot/generate_plots.py
 
 # Set the working directory
 WORKDIR /home
