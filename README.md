@@ -18,7 +18,7 @@ the paper are located at the bottom of this document.
 1. Prerequisites for Using the Modular NoC model
 2. Setting up the Docker Container
 3. Installing Modest on a Local Machine (Optional)
-4. Files in this Artifact
+4. Directories in this Artifact
 5. Replicating Modular Results From the Paper
 6. Using Python to Generate New Models
 
@@ -35,8 +35,7 @@ new model templates using the Python library.
 
 A Docker image is provided with this artifact containing the Modest Toolset and
 Python. Using this Docker image is the recommended way to use this artifact.
-If necessary, steps are provided below to install Modest and Python on a local
-machine as well.
+If necessary, steps are provided below to install Modest on a local machine.
 
 ## Setting up the Docker Container
 
@@ -98,7 +97,7 @@ The Modest Toolset (www.modestchecker.net), version <v3.1.290 or greater>.
 ...
 ```
 
-## Files in this Artifact
+## Directories in this Artifact
 
 - [models/](./models/): The modular 2x2 model used to verify functional correctness of the
   modular NoC design examples of 2x2 and 3x3 used to characterize PSN. Additionally, the
