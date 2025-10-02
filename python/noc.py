@@ -115,7 +115,7 @@ const int NOC_MESH_HEIGHT = {self.dimension};
 const int BUFFER_LENGTH = {self.buffer_size};
 
 // #CUSTOMIZE 
-// These values change the frequency with witch flits are injected.
+// These values change the frequency with which flits are injected.
 const int INJECTION_RATE_NUMERATOR = {self.injection_rate_numerator};
 const int INJECTION_RATE_DENOMINATOR = {self.injection_rate_denominator};
 
@@ -129,7 +129,7 @@ transient int(0..1) clk_indicator;
 // #CUSTOMIZE the number of buffers a router must service before noise will be incremented.
 const int ACTIVITY_THRESH = {self.activity_thresh};
 
-// #CUSTOMIZE this is the upper threshoold for noise detected in the system.
+// #CUSTOMIZE this is the upper threshold for noise detected in the system.
 const int RESISTIVE_NOISE_THRESH = {self.resistive_noise_threshold};
 const int INDUCTIVE_NOISE_THRESH = {self.inductive_noise_threshold};
 """
@@ -403,8 +403,8 @@ process GenerateFlits(int id) {
         verification: str = """\
 // ----- Processes -----
 // General guidance for processes is that we want as much synchronized assignments to happen
-// as possible. A digital system is by default a synchronous system, so we don't typically
-// need worry about interleavings for our design. To accomplish this most processes also 
+// as possible. A digital system is by default a synchronous system, so we don't
+// need to worry about inter leavings for our design. To accomplish this most processes also 
 // have an associated action with the same name that synchronizes assignments between
 // routers within those processes.
 
@@ -571,7 +571,7 @@ process UpdatePriorityList(int id, int i) {
 
 // Update the entire priority list (schedule) for router `id`
 action updatePriority;
-process UpdatePiority(int id) {
+process UpdatePriority(int id) {
     // Reset all of the temp values
     updatePriority {=
         noc[id].priority_list_temp = [0, 0, 0, 0, 0],
@@ -623,7 +623,7 @@ process Router(int id) {
     AdvanceRouter(id);
 
     // Update the priority list
-    UpdatePiority(id);
+    UpdatePriority(id);
 
     // Sync w/ the clock -
     nextClockCycle;
@@ -805,7 +805,7 @@ process UpdatePriorityList(int id, int i) {
 
 // Update the entire priority list (schedule) for router `id`
 action updatePriority;
-process UpdatePiority(int id) {
+process UpdatePriority(int id) {
     // Reset all of the temp values
     updatePriority {=
         noc[id].priority_list_temp = [0, 0, 0, 0, 0],
@@ -871,7 +871,7 @@ process Router(int id) {
     AdvanceRouter(id);
 
     // Update the priority list
-    UpdatePiority(id);
+    UpdatePriority(id);
 
     // Update noise tracking
     UpdateGlobalNoiseTracking(id);

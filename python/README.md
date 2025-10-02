@@ -1,6 +1,6 @@
 # NoC and Modest Libraries README
 
-This README covers briefly how to use the `noc` and `modest` libraries provided
+This README provides an overview of using the `noc` and `modest` libraries provided
 in this artifact.
 
 ## `noc` Library
@@ -19,7 +19,7 @@ _2x2 = noc.Noc(2)
 ```
 
 To print the Modest model, call the "print" function on the `Noc` object. When doing so, you must
-specify what kind of properties you would like to include with the model.
+specify which properties you would like to include with the model.
 
 ```python
 # get a model with no properties
@@ -30,7 +30,7 @@ with open("2x2.modest", "w") as f:
     f.write(model)
 ```
 
-More documentation is availabe in [noc.py](./noc.py).
+More documentation is available in [noc.py](./noc.py).
 
 ## `modest` Library
 
@@ -73,4 +73,4 @@ and the script ensures that the model starts off valid.
 
 [psn_results.py](./psn_results.py) shows an example of how we used these libraries to automate
 the characterization of PSN for the results in this paper. Similar methods can be used to
-automate many SMC runs in the future.
+automate NoC characterization over many parameters.
